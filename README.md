@@ -1,5 +1,6 @@
 # couch-push
-Deploy CouchDB documents from directory, JSON or module.
+Deploy CouchDB documents from directory, JSON or module.  
+Via API or command line client.
 
 [![Build Status](https://travis-ci.org/jo/couch-push.svg?branch=master)](http://travis-ci.org/jo/couch-push)
 
@@ -31,7 +32,7 @@ Currently there are supported `options`.
 ### `callback`
 `callback` is called with two arguments: `error` and `response`.
 
-### CLI
+## CLI
 ```shell
 npm install -g couch-push
 ```
