@@ -1,0 +1,52 @@
+# couch-push
+Deploy CouchDB documents from directory, JSON or module.
+
+[![Build Status](https://secure.travis-ci.org/jo/couch-push.png?branch=master)](http://travis-ci.org/jo/couch-push)
+
+```js
+var push = require('couch-push');
+compile('/path/to/my/couch/app', 'http://localhost:5984/my-app', function(err, response) {
+  // { ok: true }
+});
+```
+
+## Usage
+`push(source, url, [options], callback)`
+
+### `source`
+Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module.
+Please see [couch-compile](https://github.com/jo/couch-compile) for in depth
+information about source handling.
+
+### `url`
+URL to a CouchDB database. Auth URLs are OK. See
+[nanos configuration](https://github.com/dscape/nano#configuration), as this argument is
+directly passed to nano.
+
+### `options`
+Currently there are supported `options`.
+
+### `callback`
+`callback` is called with two arguments: `error` and `response`.
+
+### CLI
+A simple commandline client is included:
+```shell
+npm install -g couch-push
+```
+
+Give it a database and a directory:
+```shell
+couch-push http://localhost:5984/my-app /path/to/my/couch/app
+```
+
+When omitted, the current directory will be used.
+
+## Testing
+Run the testsuite with
+```shell
+npm test
+```
+
+(c) 2014 Johannes J. Schmidt, TF  
+MIT License
