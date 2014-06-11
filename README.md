@@ -1,7 +1,7 @@
 # couch-push
 Deploy CouchDB documents from directory, JSON or module.
 
-[![Build Status](https://secure.travis-ci.org/jo/couch-push.png?branch=master)](http://travis-ci.org/jo/couch-push)
+[![Build Status](https://travis-ci.org/jo/couch-push.svg?branch=master)](http://travis-ci.org/jo/couch-push)
 
 ```js
 var push = require('couch-push');
