@@ -12,18 +12,18 @@ compile('/my/couch/app', 'http://localhost:5984/my-app', function(err, resp) {
 
 ## Usage
 ```js
-push(source, url, [options], callback)
+push(url, source, [options], callback)
 ```
-
-### `source`
-Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module.
-Please see [couch-compile](https://github.com/jo/couch-compile) for in depth
-information about source handling.
 
 ### `url`
 URL to a CouchDB database. Auth URLs are OK. See
 [nanos configuration](https://github.com/dscape/nano#configuration), as this argument is
 directly passed to nano.
+
+### `source`
+Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module.
+Please see [couch-compile](https://github.com/jo/couch-compile) for in depth
+information about source handling.
 
 ### `options`
 Currently there are supported `options`.
@@ -32,7 +32,6 @@ Currently there are supported `options`.
 `callback` is called with two arguments: `error` and `response`.
 
 ### CLI
-A simple commandline client is included:
 ```shell
 npm install -g couch-push
 ```
