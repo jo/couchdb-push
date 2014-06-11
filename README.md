@@ -5,7 +5,7 @@ Deploy CouchDB documents from directory, JSON or module.
 
 ```js
 var push = require('couch-push');
-compile('/path/to/my/couch/app', 'http://localhost:5984/my-app', function(err, response) {
+compile('/my/couch/app', 'http://localhost:5984/my-app', function(err, resp) {
   // { ok: true }
 });
 ```
