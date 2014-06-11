@@ -11,7 +11,9 @@ compile('/my/couch/app', 'http://localhost:5984/my-app', function(err, resp) {
 ```
 
 ## Usage
-`push(source, url, [options], callback)`
+```js
+push(source, url, [options], callback)
+```
 
 ### `source`
 Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module.
