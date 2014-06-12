@@ -37,15 +37,17 @@ test('database is present', function(t) {
 });
 
 test('doc unchanged', function(t) {
-  push(url + '/' + dbname, source, function(err, response) {
+  couch.db.destroy(dbname, function(err, resp) {
     push(url + '/' + dbname, source, function(err, response) {
-      t.equal(err, null, 'no error');
-      t.equal(response.ok, true, 'response is ok');
-      t.type(response.rev, 'string', 'response has rev');
-      t.type(response.id, 'string', 'response has id');
-      t.equal(response.unchanged, true, 'response is unchanged');
+      push(url + '/' + dbname, source, function(err, response) {
+        t.equal(err, null, 'no error');
+        t.equal(response.ok, true, 'response is ok');
+        t.type(response.rev, 'string', 'response has rev');
+        t.type(response.id, 'string', 'response has id');
+        t.equal(response.unchanged, true, 'response is unchanged');
 
-      t.end();
+        t.end();
+      });
     });
   });
 });

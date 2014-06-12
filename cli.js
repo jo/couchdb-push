@@ -8,8 +8,8 @@ if (!args.length) {
 }
 
 var url = args[0];
-var dir = args[1] || process.cwd();
+var source = args[1] || process.cwd();
 
-push(url, dir, function(err, response) {
+push(url, source, { multipart: true }, function(err, response) {
   console.log(err || response);
 });

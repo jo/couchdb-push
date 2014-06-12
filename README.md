@@ -27,7 +27,7 @@ Please see [couch-compile](https://github.com/jo/couch-compile) for in depth
 information about source handling.
 
 ### `options`
-Currently there are supported `options`.
+When `options.multipart` is true, attachments are saved via [multipart api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
 
 ### `callback`
 `callback` is called with two arguments: `error` and `response`.
