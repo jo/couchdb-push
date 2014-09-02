@@ -104,11 +104,11 @@ module.exports = function push(url, source, options, callback) {
         return callback(err);
       }
 
-      if (!doc._id) {
+      if (!doc.doc._id) {
         return callback({ error: 'missing_id', reason: 'Missing _id property' });
       }
 
-      getDoc(doc, attachments);
+      getDoc(doc.doc, attachments);
     });
   }
 
