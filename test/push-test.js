@@ -56,7 +56,6 @@ test('database containing a slash', function(t) {
   var name = dbname + '/one'
   couch.db.destroy(name, function(err, resp) {
     push(url + '/' + encodeURIComponent(name), source, function(err, response) {
-      console.log(err)
       t.equal(err, null, 'no error');
       t.equal(response.ok, true, 'response is ok');
 
