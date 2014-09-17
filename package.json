@@ -25,7 +25,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "couch-compile": "^1.2.0",
-    "nano": "git+https://github.com/jo/nano.git#221-decode-dbname-from-url-parts"
+    "nano": "git+https://github.com/jo/nano.git"
   },
   "devDependencies": {
     "tap": "^0.4.11"
