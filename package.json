@@ -1,6 +1,6 @@
 {
   "name": "couch-push",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Deploy CouchDB documents from directory, JSON or module.",
   "main": "index.js",
   "bin": "./cli.js",
@@ -25,7 +25,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "couch-compile": "^1.2.0",
-    "nano": "git+https://github.com/jo/nano.git#208-preserve-existing-attachments-on-multipart"
+    "nano": "git+https://github.com/jo/nano.git#221-decode-dbname-from-url-parts"
   },
   "devDependencies": {
     "tap": "^0.4.11"
