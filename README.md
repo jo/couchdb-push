@@ -6,7 +6,8 @@ Via API or command line client.
 
 ```js
 var push = require('couch-push');
-compile('http://localhost:5984/my-app', '/my/couch/app', function(err, resp) {
+
+push('http://localhost:5984/my-app', 'path/to/couch/app', function(err, resp) {
   // { ok: true }
 });
 ```
