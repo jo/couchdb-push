@@ -89,7 +89,7 @@ module.exports = function push(url, source, options, callback) {
 
   function getDoc(doc, attachments) {
     db.get(doc._id, function(err, response) {
-      if (err && err.status_code === 404) {
+      if (err && err.statusCode === 404) {
         return pushDoc(doc, attachments);
       }
 
@@ -115,7 +115,7 @@ module.exports = function push(url, source, options, callback) {
 
   var couch = nano(db.config.url);
   couch.db.get(db.config.db, function(err, info) {
-    if (err && err.status_code === 404) {
+    if (err && err.statusCode === 404) {
       return couch.db.create(db.config.db, function(err, response) {
         if (err) {
           return callback({ error: err.error, reason: err.reason });
