@@ -25,7 +25,6 @@ module.exports = function push(url, source, options, callback) {
     return callback({ error: 'no_db', reason: 'Not a database: ' + url });
   }
 
-
   function pushDoc(doc, attachments) {
     if (options.multipart) {
       db.multipart.insert(doc, attachments, doc._id, callback);
@@ -117,8 +116,8 @@ module.exports = function push(url, source, options, callback) {
   couch.db.get(db.config.db, function(err, info) {
     if (err && err.statusCode === 404) {
       return couch.db.create(db.config.db, function(err, response) {
-        if (err) {
-          return callback({ error: err.error, reason: err.reason });
+        if (err && err.statusCode !== 412) {
+          return callback({ error: err.error, reason: err.reason, code: err.statusCode });
         }
 
         compileDoc();
