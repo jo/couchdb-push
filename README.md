@@ -2,7 +2,8 @@
 Deploy CouchDB documents from directory, JSON or module.  
 Via API or command line client.
 
-[![Build Status](https://travis-ci.org/jo/couch-push.svg?branch=master)](http://travis-ci.org/jo/couch-push)
+[![Build
+Status](https://travis-ci.org/jo/couch-push.svg?branch=master)](http://travis-ci.org/jo/couch-push)
 
 ```js
 var push = require('couch-push');
@@ -28,7 +29,8 @@ Please see [couch-compile](https://github.com/jo/couch-compile) for in depth
 information about source handling.
 
 ### `options`
-When `options.multipart` is true, attachments are saved via [multipart api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
+When `options.multipart` is true, attachments are saved via [multipart
+api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
 
 ### `callback`
 `callback` is called with two arguments: `error` and `response`.
