@@ -1,12 +1,12 @@
-# couch-push
+# CouchDB Push
 Deploy CouchDB documents from directory, JSON or module.  
 Via API or command line client.
 
 [![Build
-Status](https://travis-ci.org/jo/couch-push.svg?branch=master)](http://travis-ci.org/jo/couch-push)
+Status](https://travis-ci.org/jo/couchdb-push.svg?branch=master)](http://travis-ci.org/jo/couchdb-push)
 
 ```js
-var push = require('couch-push');
+var push = require('couchdb-push');
 
 push('http://localhost:5984/my-app', 'path/to/couch/app', function(err, resp) {
   // { ok: true }
@@ -37,12 +37,12 @@ api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multipl
 
 ## CLI
 ```shell
-npm install -g couch-push
+npm install -g couchdb-push
 ```
 
 Give it a database and a directory:
 ```shell
-couch-push http://localhost:5984/my-app /path/to/my/couch/app
+couchdb-push http://localhost:5984/my-app /path/to/my/couch/app
 ```
 
 When omitted, the current directory will be used.

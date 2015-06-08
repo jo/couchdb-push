@@ -1,5 +1,5 @@
 var url = process.env.COUCH || 'http://localhost:5984';
-var dbname = 'couch-push-test';
+var dbname = 'couchdb-push-test';
 
 var nano = require('nano');
 var fs = require('fs');

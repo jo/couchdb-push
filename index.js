@@ -1,4 +1,4 @@
-// couch-push
+// couchdb-push
 // (c) 2014 Johannes J. Schmidt
 
 var crypto = require('crypto');
