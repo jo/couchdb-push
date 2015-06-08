@@ -25,7 +25,7 @@ directly passed to nano.
 
 ### `source`
 Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module.
-Please see [couch-compile](https://github.com/jo/couch-compile) for in depth
+Please see [couchdb-compile](https://github.com/jo/couchdb-compile) for in depth
 information about source handling.
 
 ### `options`

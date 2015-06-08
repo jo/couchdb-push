@@ -5,7 +5,7 @@ var crypto = require('crypto');
 var assert = require('assert');
 var async = require('async');
 var nano = require('nano');
-var compile = require('couch-compile');
+var compile = require('couchdb-compile');
 var ensure = require('couchdb-ensure');
 
 
