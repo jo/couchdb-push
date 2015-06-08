@@ -6,6 +6,7 @@ var assert = require('assert');
 var async = require('async');
 var nano = require('nano');
 var compile = require('couch-compile');
+var ensure = require('couchdb-ensure');
 
 
 module.exports = function push(url, source, options, callback) {
@@ -112,22 +113,11 @@ module.exports = function push(url, source, options, callback) {
   }
 
 
-  var couch = nano(db.config.url);
-  couch.db.get(db.config.db, function(err, info) {
-    if (err && err.statusCode === 404) {
-      return couch.db.create(db.config.db, function(err, response) {
-        if (err && err.statusCode !== 412) {
-          return callback({ error: err.error, reason: err.reason, code: err.statusCode });
-        }
-
-        compileDoc();
-      });
+  ensure(url, function(error) {
+    if (error) {
+      return callback(error);
     }
-
-    if (err) {
-      return callback({ error: err.error, reason: err.reason });
-    }
-
+    
     compileDoc();
   });
 };
