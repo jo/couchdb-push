@@ -1,5 +1,5 @@
 # CouchDB Push
-Deploy CouchDB documents from directory, JSON or module.  
+Deploy CouchDB documents from directory, JSON or CommonJS module.
 Via API or command line client.
 
 [![Build
