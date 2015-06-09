@@ -41,6 +41,15 @@ test('database is present', function(t) {
   });
 });
 
+test('url as nano object', function(t) {
+  push(db, source, function(err, response) {
+    t.equal(err, null, 'no error');
+    t.equal(response.ok, true, 'response is ok');
+
+    t.end();
+  });
+});
+
 test('doc unchanged', function(t) {
   couch.db.destroy(dbname, function(err, resp) {
     push(url + '/' + dbname, source, function(err, response) {
