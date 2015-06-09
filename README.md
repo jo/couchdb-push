@@ -5,14 +5,6 @@ Via API or command line client.
 [![Build
 Status](https://travis-ci.org/jo/couchdb-push.svg?branch=master)](http://travis-ci.org/jo/couchdb-push)
 
-```js
-var push = require('couchdb-push');
-
-push('http://localhost:5984/my-app', 'path/to/couch/app', function(err, resp) {
-  // { ok: true }
-});
-```
-
 
 ## API
 
@@ -26,6 +18,15 @@ directly passed to nano.
 * `options.multipart` - if set to `true`, attachments are saved via [multipart api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
 * `callback` - called when done with two arguments: `error` and `response`.
 
+### Example
+
+```js
+var push = require('couchdb-push');
+push('http://localhost:5984/my-app', 'project/couchdb', function(err, resp) {
+  // { ok: true }
+});
+```
+
 
 ## CLI
 ```sh
@@ -38,7 +39,7 @@ When `SOURCE` is omitted, the current directory will be used.
 ### Example
 
 ```sh
-couchdb-push http://localhost:5984/my-app /path/to/my/couch/app
+couchdb-push http://localhost:5984/my-app project/couchdb
 ```
 
 ## Tests
