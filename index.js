@@ -17,7 +17,7 @@ module.exports = function push(url, source, options, callback) {
   options = options || {};
 
   try {
-    var db = typeof url.config === 'object' ? url : nano(url);
+    var db = (typeof url.config === 'object') ? url : nano(url);
   } catch(e) {
     return callback({ error: 'invalid_url', reason: 'Not a valid database URL: ' + url });
   }
