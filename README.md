@@ -30,7 +30,7 @@ push('http://localhost:5984/my-app', 'project/couchdb', function(err, resp) {
 
 ## CLI
 ```sh
-couchdb-bootstrap URL [SOURCE]
+couchdb-push URL [SOURCE]
 ```
 
 When `SOURCE` is omitted, the current directory will be used.  
