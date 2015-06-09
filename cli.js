@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 
-var push = require('./');
+var push = require('./')
 
-var args = process.argv.slice(2);
+var args = process.argv.slice(2)
 if (!args.length) {
-  return console.log('Usage: \ncouchdb-push URL [DIR]');
+  return console.log('Usage: \ncouchdb-push URL [SOURCE]')
 }
 
-var url = args[0];
-var source = args[1] || process.cwd();
+var url = args[0]
+var source = args[1] || process.cwd()
 
-push(url, source, { multipart: true }, function(err, response) {
-  console.log(err || response);
-});
+push(url, source, { multipart: true }, function(error, response) {
+  if (error) return console.error(error)
+
+  console.log(JSON.stringify(response, null, '  '))
+})
