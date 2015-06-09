@@ -27,7 +27,7 @@ module.exports = function push(url, source, options, callback) {
   }
 
   function pushDoc(doc, attachments) {
-    if (options.multipart) {
+    if (options.multipart && attachments.length) {
       db.multipart.insert(doc, attachments, doc._id, callback);
     } else {
       db.insert(doc, doc._id, callback);
@@ -51,7 +51,7 @@ module.exports = function push(url, source, options, callback) {
     doc._rev = existingDoc._rev;
 
     if (options.multipart) {
-      if (attachments && attachments.length) {
+      if (attachments.length) {
         for (var i = 0; i < attachments.length; i++) {
           var name = attachments[i].name;
           var identical = diffAttachment(attachments[i], existingDoc && existingDoc._attachments && existingDoc._attachments[name]);
@@ -107,6 +107,8 @@ module.exports = function push(url, source, options, callback) {
       if (!doc._id) {
         return callback({ error: 'missing_id', reason: 'Missing _id property' });
       }
+
+      attachments = attachments || [];
 
       getDoc(doc, attachments);
     });
