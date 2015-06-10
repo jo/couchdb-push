@@ -7,10 +7,10 @@ if (!args.length) {
   return console.log('Usage: \ncouchdb-push URL [SOURCE]')
 }
 
-var url = args[0]
+var db = args[0]
 var source = args[1] || process.cwd()
 
-push(url, source, { multipart: true }, function(error, response) {
+push(db, source, { multipart: true }, function(error, response) {
   if (error) return console.error(error)
 
   console.log(JSON.stringify(response, null, '  '))

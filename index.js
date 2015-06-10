@@ -9,7 +9,7 @@ var compile = require('couchdb-compile');
 var ensure = require('couchdb-ensure');
 
 
-module.exports = function push(url, source, options, callback) {
+module.exports = function push(db, source, options, callback) {
   if (typeof options === 'function') {
     callback = options;
     options = {};
@@ -17,13 +17,13 @@ module.exports = function push(url, source, options, callback) {
   options = options || {};
 
   try {
-    var db = (typeof url.config === 'object') ? url : nano(url);
+    db = (typeof db.config === 'object') ? db : nano(db);
   } catch(e) {
-    return callback({ error: 'invalid_url', reason: 'Not a valid database URL: ' + url });
+    return callback({ error: 'invalid_db', reason: 'Not a valid database: ' + url });
   }
 
   if (!db.config.db) {
-    return callback({ error: 'no_db', reason: 'Not a database: ' + url });
+    return callback({ error: 'no_db', reason: 'Not a database: ' + db });
   }
 
   function pushDoc(doc, attachments) {
@@ -115,7 +115,7 @@ module.exports = function push(url, source, options, callback) {
   }
 
 
-  ensure(url, function(error) {
+  ensure(db, function(error) {
     if (error) {
       return callback(error);
     }

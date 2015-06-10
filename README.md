@@ -9,10 +9,10 @@ Status](https://travis-ci.org/jo/couchdb-push.svg?branch=master)](http://travis-
 ## API
 
 ```js
-push(url, source[, options], callback)
+push(db, source[, options], callback)
 ```
 
-* `url` - URL to a CouchDB database. Auth URLs are OK. See [nanos configuration](https://github.com/dscape/nano#configuration), as this argument is directly passed to nano. As of v1.5.0 a nano object is supported, too.
+* `db` - URL to a CouchDB database. Auth URLs are OK. See [nanos configuration](https://github.com/dscape/nano#configuration), as this argument is directly passed to nano. As of v1.5.0 a nano object is supported, too.
 * `source` -  Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module. Please see [couchdb-compile](https://github.com/jo/couchdb-compile) for in depth information about source handling.
 * `options.multipart` - if set to `true`, attachments are saved via [multipart api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
 * `callback` - called when done with two arguments: `error` and `response`.
@@ -29,7 +29,7 @@ push('http://localhost:5984/my-app', 'project/couchdb', function(err, resp) {
 
 ## CLI
 ```sh
-couchdb-push URL [SOURCE]
+couchdb-push DB [SOURCE]
 ```
 
 When `SOURCE` is omitted, the current directory will be used.  
