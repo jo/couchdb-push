@@ -2,15 +2,17 @@
 
 var push = require('./')
 
-var args = process.argv.slice(2)
-if (!args.length) {
-  return console.log('Usage: \ncouchdb-push URL [SOURCE]')
+var options = minimist(process.argv.slice(2), {
+  boolean: ['index', 'multipart']
+})
+if (!options._.length) {
+  return console.log('Usage: \ncouchdb-push URL [SOURCE] [OPTIONS]')
 }
 
-var db = args[0]
-var source = args[1] || process.cwd()
+var db = options._[0]
+var source = options._[0] || process.cwd()
 
-push(db, source, { multipart: true }, function(error, response) {
+push(db, source, options, function(error, response) {
   if (error) return console.error(error)
 
   console.log(JSON.stringify(response, null, '  '))
