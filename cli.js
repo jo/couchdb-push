@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var minimist = require('minimist')
 var push = require('./')
 
 var options = minimist(process.argv.slice(2), {
