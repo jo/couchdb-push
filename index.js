@@ -4,7 +4,7 @@
 var crypto = require('crypto');
 var assert = require('assert');
 var async = require('async');
-var nano = require('nano');
+var nanoOption = require('nano-option');
 var compile = require('couchdb-compile');
 var ensure = require('couchdb-ensure');
 
@@ -17,7 +17,7 @@ module.exports = function push(db, source, options, callback) {
   options = options || {};
 
   try {
-    db = (typeof db.config === 'object') ? db : nano(db);
+    db = nanoOption(db);
   } catch(e) {
     return callback({ error: 'invalid_db', reason: 'Not a valid database: ' + url });
   }
