@@ -4,7 +4,7 @@ var minimist = require('minimist')
 var push = require('./')
 
 var options = minimist(process.argv.slice(2), {
-  boolean: ['index', 'multipart']
+  boolean: ['index', 'multipart', 'watch']
 })
 if (!options._.length) {
   return console.log('Usage: \ncouchdb-push URL [SOURCE] [OPTIONS]')

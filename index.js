@@ -7,6 +7,7 @@ var async = require('async');
 var nanoOption = require('nano-option');
 var compile = require('couchdb-compile');
 var ensure = require('couchdb-ensure');
+var chokidar = require('chokidar');
 
 
 module.exports = function push(db, source, options, callback) {
@@ -26,11 +27,11 @@ module.exports = function push(db, source, options, callback) {
     return callback({ error: 'no_db', reason: 'Not a database: ' + db });
   }
 
-  function pushDoc(doc, attachments) {
+  function pushDoc(doc, attachments, done) {
     if (options.multipart && attachments.length) {
-      db.multipart.insert(doc, attachments, doc._id, callback);
+      db.multipart.insert(doc, attachments, doc._id, done);
     } else {
-      db.insert(doc, doc._id, callback);
+      db.insert(doc, doc._id, done);
     }
   }
 
@@ -47,7 +48,7 @@ module.exports = function push(db, source, options, callback) {
     return existingAttachment.digest === digest;
   }
 
-  function diffDoc(doc, existingDoc, attachments) {
+  function diffDoc(doc, existingDoc, attachments, done) {
     doc._rev = existingDoc._rev;
 
     if (options.multipart) {
@@ -81,36 +82,36 @@ module.exports = function push(db, source, options, callback) {
         assert.equal(attachments.length, 0);
       }
 
-      callback(null, { ok: true, id: doc._id, rev: doc._rev, unchanged: true });
+      done(null, { ok: true, id: doc._id, rev: doc._rev, unchanged: true });
     } catch(e) {
-      pushDoc(doc, attachments);
+      pushDoc(doc, attachments, done);
     }
   }
 
-  function getDoc(doc, attachments) {
+  function getDoc(doc, attachments, done) {
     db.get(doc._id, function(err, response) {
       if (err && err.statusCode === 404) {
-        return pushDoc(doc, attachments);
+        return pushDoc(doc, attachments, done);
       }
 
-      diffDoc(doc, response, attachments);
+      diffDoc(doc, response, attachments, done);
     })
   }
 
   
-  function compileDoc() {
+  function compileDoc(done) {
     compile(source, options, function(err, doc, attachments) {
       if (err) {
-        return callback(err);
+        return done(err);
       }
 
       if (!doc._id) {
-        return callback({ error: 'missing_id', reason: 'Missing _id property' });
+        return done({ error: 'missing_id', reason: 'Missing _id property' });
       }
 
       attachments = attachments || [];
 
-      getDoc(doc, attachments);
+      getDoc(doc, attachments, done);
     });
   }
 
@@ -119,7 +120,20 @@ module.exports = function push(db, source, options, callback) {
     if (error) {
       return callback(error);
     }
+
+    if (options.watch) {
+      var queue = async.queue(function(task, done) {
+        compileDoc(function(error, response) {
+          callback(error, response)
+          done(error)
+        })
+      }, 1)
+
+      chokidar
+        .watch(source, { ignoreInitial: true })
+        .on('all', queue.push);
+    }
     
-    compileDoc();
+    compileDoc(callback);
   });
 };
