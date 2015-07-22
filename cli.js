@@ -11,7 +11,7 @@ if (!options._.length) {
 }
 
 var db = options._[0]
-var source = options._[0] || process.cwd()
+var source = options._[1] || process.cwd()
 
 push(db, source, options, function(error, response) {
   if (error) return console.error(error)
