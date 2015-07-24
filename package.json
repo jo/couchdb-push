@@ -25,7 +25,7 @@
   "dependencies": {
     "async": "~0.9.2",
     "chokidar": "^1.0.5",
-    "couchdb-compile": "^1.5.4",
+    "couchdb-compile": "^1.5.5",
     "couchdb-ensure": "^1.2.1",
     "minimist": "^1.1.1",
     "nano-option": "^1.0.0"
