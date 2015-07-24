@@ -28,6 +28,9 @@ module.exports = function push(db, source, options, callback) {
   }
 
   function pushDoc(doc, attachments, done) {
+    if (options.prepareDoc) {
+      options.prepareDoc(doc)
+    }
     if (options.multipart && attachments.length) {
       db.multipart.insert(doc, attachments, doc._id, done);
     } else {
@@ -98,7 +101,7 @@ module.exports = function push(db, source, options, callback) {
     })
   }
 
-  
+
   function compileDoc(done) {
     compile(source, options, function(err, doc, attachments) {
       if (err) {
@@ -134,7 +137,7 @@ module.exports = function push(db, source, options, callback) {
         .watch(source, { ignoreInitial: true })
         .on('all', queue.push);
     }
-    
+
     compileDoc(callback);
   });
 };
