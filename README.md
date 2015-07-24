@@ -17,6 +17,7 @@ push(db, source[, options], callback)
 * `options.index` - When set to `true`, folders are searched for `index.js`, which, if present, is treated as CommonJS module. Default is `false`.
 * `options.multipart` - if set to `true`, attachments are saved via [multipart api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
 * `options.watch` - if set to `true`, watch `source` and push on file changes.
+* `options.prepareDoc` - `function` to change doc before pushing to CouchDB.
 * `callback` - called when done with two arguments: `error` and `response`.
 
 ### Example
@@ -34,7 +35,7 @@ push('http://localhost:5984/my-app', 'project/couchdb', function(err, resp) {
 couchdb-push DB [SOURCE] [OPTIONS]
 ```
 
-When `SOURCE` is omitted, the current directory will be used.  
+When `SOURCE` is omitted, the current directory will be used.
 `OPTIONS` can be `--index`, `--multipart` or `--watch`, see above.
 
 ### Example
@@ -48,5 +49,5 @@ couchdb-push http://localhost:5984/my-app project/couchdb --watch
 npm test
 ```
 
-(c) 2014 Johannes J. Schmidt, TF  
+(c) 2014 Johannes J. Schmidt, TF
 MIT License

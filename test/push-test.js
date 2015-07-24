@@ -95,3 +95,18 @@ test('concurrency', function(t) {
   });
 });
 
+test('options.prepareDoc', function(t) {
+  couch.db.destroy(dbname, function(err, resp) {
+    push(url + '/' + dbname, source, {
+      prepareDoc: function (doc) {
+        doc.foo = 'bar'
+      }
+    }, function(err, response) {
+      db.get('mydoc', function (err, doc) {
+        t.equal(doc.foo, 'bar', 'sets custom property');
+
+        t.end();
+      })
+    });
+  });
+});
