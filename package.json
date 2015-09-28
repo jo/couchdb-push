@@ -23,16 +23,16 @@
   },
   "homepage": "https://github.com/jo/couchdb-push",
   "dependencies": {
-    "async": "~0.9.2",
-    "chokidar": "^1.0.5",
-    "couchdb-compile": "^1.5.5",
-    "couchdb-ensure": "^1.2.1",
-    "minimist": "^1.1.1",
-    "nano-option": "^1.0.0"
+    "async": "0.9.2",
+    "chokidar": "1.1.0",
+    "couchdb-compile": "1.6.0",
+    "couchdb-ensure": "1.2.1",
+    "minimist": "1.2.0",
+    "nano-option": "1.0.0"
   },
   "devDependencies": {
-    "tap": "~0.4.11",
-    "nano": "^6.1.3",
-    "semantic-release": "^4.3.5"
+    "tap": "0.4.13",
+    "nano": "6.1.5",
+    "semantic-release": "4.3.5"
   }
 }
