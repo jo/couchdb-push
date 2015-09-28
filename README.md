@@ -49,4 +49,4 @@ npm test
 ```
 
 (c) 2014 Johannes J. Schmidt, TF  
-MIT License
+Apache 2.0 License
