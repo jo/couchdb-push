@@ -28,7 +28,7 @@
     "couchdb-compile": "1.6.0",
     "couchdb-ensure": "1.2.1",
     "minimist": "1.2.0",
-    "nano-option": "1.0.0"
+    "nano-option": "1.1.0"
   },
   "devDependencies": {
     "tap": "0.4.13",
