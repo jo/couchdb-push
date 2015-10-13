@@ -31,7 +31,7 @@
     "nano-option": "1.1.1"
   },
   "devDependencies": {
-    "tap": "0.4.13",
+    "tap": "2.1.1",
     "nano": "6.1.5",
     "semantic-release": "6.0.3"
   }
