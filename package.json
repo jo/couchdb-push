@@ -4,6 +4,7 @@
   "main": "index.js",
   "bin": "cli.js",
   "scripts": {
+    "pretest": "standard",
     "test": "tap test/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -31,8 +32,9 @@
     "nano-option": "^1.1.1"
   },
   "devDependencies": {
-    "tap": "^2.1.1",
     "nano": "^6.1.5",
-    "semantic-release": "^6.0.3"
+    "semantic-release": "^6.0.3",
+    "standard": "^5.4.1",
+    "tap": "^2.1.1"
   }
 }
