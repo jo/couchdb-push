@@ -2,8 +2,9 @@
 // (c) 2014 Johannes J. Schmidt
 
 var crypto = require('crypto')
-var assert = require('assert')
 var async = require('async')
+var omit = require('lodash/object/omit')
+var isEqual = require('lodash/lang/isEqual')
 var nanoOption = require('nano-option')
 var compile = require('couchdb-compile')
 var ensure = require('couchdb-ensure')
@@ -75,16 +76,52 @@ module.exports = function push (db, source, options, callback) {
       }
     }
 
-    try {
-      assert.deepEqual(doc, existingDoc)
-      if (options.multipart) {
-        assert.equal(attachments.length, 0)
-      }
-
-      done(null, { ok: true, id: doc._id, rev: doc._rev, unchanged: true })
-    } catch (e) {
-      pushDoc(doc, attachments, done)
+    // cannot diff multipart attachments
+    if (options.multipart && attachments.length > 0) {
+      return pushDoc(doc, attachments, done)
     }
+
+    hasChanged(doc, existingDoc, function (error, changed) {
+      if (error) return done(error)
+
+      if (changed) return pushDoc(doc, attachments, done)
+
+      done(null, {
+        ok: true,
+        id: doc._id,
+        rev: doc._rev,
+        unchanged: true
+      })
+    })
+  }
+
+  function hasChanged (doc, existingDoc, callback) {
+    if (isUserDoc(doc) && doc.name && doc.password) {
+      confirmSession(doc.name, doc.password, function (error, result) {
+        if (error) {
+          if (error.statusCode === 401) return callback(null, true)
+          return callback(error)
+        }
+
+        var userDocToCompare = omit(doc, 'password')
+        var existingDocToCompare = omit(existingDoc, 'derived_key', 'iterations', 'password_scheme', 'salt')
+
+        callback(null, !isEqual(userDocToCompare, existingDocToCompare))
+      })
+    } else {
+      callback(null, !isEqual(doc, existingDoc))
+    }
+  }
+
+  // TChecking against `_users` is not acurate, because the users db can be configured:
+  // [couch_httpd_auth]
+  // authentication_db = _users
+  function isUserDoc (doc) {
+    return db.config.db === '_users'
+  }
+
+  function confirmSession (name, password, done) {
+    db.auth(name, password, done)
   }
 
   function getDoc (doc, attachments, done) {

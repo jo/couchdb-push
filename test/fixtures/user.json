@@ -1,0 +1,7 @@
+{
+  "_id": "org.couchdb.user:couchdb-push-testuser",
+  "type": "user",
+  "name": "couchdb-push-testuser",
+  "password": "secret",
+  "roles": []
+}
