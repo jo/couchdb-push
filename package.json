@@ -35,7 +35,7 @@
   "devDependencies": {
     "nano": "^6.1.5",
     "semantic-release": "^6.0.3",
-    "standard": "^5.4.1",
+    "standard": "^6.0.4",
     "tap": "^5.0.0"
   }
 }
