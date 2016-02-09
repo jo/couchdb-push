@@ -3,8 +3,8 @@
 
 var crypto = require('crypto')
 var async = require('async')
-var omit = require('lodash/object/omit')
-var isEqual = require('lodash/lang/isEqual')
+var omit = require('lodash/omit')
+var isEqual = require('lodash/isEqual')
 var nanoOption = require('nano-option')
 var compile = require('couchdb-compile')
 var ensure = require('couchdb-ensure')

@@ -35,7 +35,12 @@
   "devDependencies": {
     "nano": "^6.2.0",
     "semantic-release": "^6.0.3",
+<<<<<<< HEAD
+    "standard": "^5.4.1",
+    "tap": "^5.0.0"
+=======
     "standard": "^6.0.4",
     "tap": "^5.4.3"
+>>>>>>> 8cf70e9... fix: update dependencies
   }
 }
