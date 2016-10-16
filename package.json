@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/jo/couchdb-push",
   "dependencies": {
-    "async": "^1.5.2",
+    "async": "^2.1.2",
     "chokidar": "^1.4.2",
     "couchdb-compile": "^1.6.3",
     "couchdb-ensure": "^1.3.1",
