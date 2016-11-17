@@ -157,7 +157,7 @@ module.exports = function push (db, source, options, callback) {
 
     if (options.watch) {
       var queue = async.queue(function (task, done) {
-        console.log('task:', task)
+        console.log(task.type + ': ' + task.filepath)
         compileDoc(function (error, response) {
           error ? console.error(error)
             : console.log(JSON.stringify(response, null, '  '))
