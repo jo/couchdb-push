@@ -157,7 +157,7 @@ module.exports = function push (db, source, options, callback) {
 
     if (options.watch) {
       var queue = async.queue(function (task, done) {
-        console.log('typeof task', typeof task)
+        console.log('task:', task)
         compileDoc(function (error, response) {
           error ? console.error(error)
             : console.log(JSON.stringify(response, null, '  '))
@@ -166,13 +166,13 @@ module.exports = function push (db, source, options, callback) {
       }, 1)
 
       chokidar
-        .watch(source, { ignoreInitial: true })
-        .on('all', function (a, b, c, d) {
-          console.log('a:', a)
-          console.log('b:', b)
-          console.log('c:', c)
-          console.log('d:', d)
-          queue.push(a)
+        .watch(source, { ignoreInitial: true, awaitWriteFinish: true })
+        .on('all', function (type, filepath, fileinfo) {
+          queue.push({
+            type: type,
+            filepath: filepath,
+            fileinfo: fileinfo
+          })
         })
     }
 
