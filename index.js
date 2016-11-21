@@ -165,8 +165,10 @@ module.exports = function push (db, source, options, callback) {
       }, 1)
 
       chokidar
-        .watch(source, { ignoreInitial: true })
-        .on('all', queue.push)
+        .watch(source, { ignoreInitial: true, awaitWriteFinish: true })
+        .on('all', function () {
+          queue.push(true)
+        })
     }
 
     compileDoc(callback)
