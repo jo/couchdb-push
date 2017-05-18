@@ -33,7 +33,7 @@
     "nano-option": "^1.2.2"
   },
   "devDependencies": {
-    "nano": "^6.2.0",
+    "nano": "^6.3.0",
     "semantic-release": "^6.0.3",
     "standard": "^6.0.4",
     "tap": "^5.4.3"
