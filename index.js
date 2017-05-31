@@ -135,6 +135,8 @@ module.exports = function push (db, source, options, callback) {
   }
 
   function compileDoc (done) {
+    if (typeof source === 'object') return getDoc(source, [], done)
+
     compile(source, options, function (err, doc, attachments) {
       if (err) {
         return done(err)
