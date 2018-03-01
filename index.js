@@ -20,11 +20,11 @@ module.exports = function push (db, source, options, callback) {
   try {
     db = nanoOption(db)
   } catch (e) {
-    return callback({ error: 'invalid_db', reason: 'Not a valid database: ' + db })
+    return callback(new Error('Not a valid database: ' + db))
   }
 
   if (!db.config.db) {
-    return callback({ error: 'no_db', reason: 'Not a database: ' + db })
+    return callback(new Error('Not a database: ' + db))
   }
 
   function pushDoc (doc, attachments, done) {
@@ -41,7 +41,7 @@ module.exports = function push (db, source, options, callback) {
     }
 
     var md5sum = crypto.createHash('md5')
-    var data = options.multipart ? attachment.data : new Buffer(attachment.data, 'base64')
+    var data = options.multipart ? attachment.data : Buffer.from(attachment.data, 'base64')
     md5sum.update(data)
     var digest = 'md5-' + md5sum.digest('base64')
 
