@@ -59,6 +59,25 @@ test('url as nano object', function (t) {
   })
 })
 
+test('source as object', function (t) {
+  push(db, { _id: 'foo-bar', foo: 'bar' }, function (error, response) {
+    t.error(error, 'no error')
+    t.equal(response.ok, true, 'response is ok')
+    t.equal(response.id, 'foo-bar', 'response is ok')
+
+    t.end()
+  })
+})
+
+test('source as object without _id', function (t) {
+  push(db, { foo: 'bar' }, function (error, response) {
+    t.error(error, 'no error')
+    t.equal(response.ok, true, 'response is ok')
+
+    t.end()
+  })
+})
+
 test('doc unchanged', function (t) {
   couch.db.destroy(dbname, function () {
     push(url + '/' + dbname, docs[0], function (error, response) {
