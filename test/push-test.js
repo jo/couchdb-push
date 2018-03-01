@@ -69,10 +69,10 @@ test('source as object', function (t) {
   })
 })
 
-test('source as object without _id', function (t) {
-  push(db, { foo: 'bar' }, function (error, response) {
-    t.error(error, 'no error')
-    t.equal(response.ok, true, 'response is ok')
+test('source as object without _id fails', function (t) {
+  push(db, { foo: 'bar' }, function (error) {
+    t.ok(error, 'there is an error')
+    t.equal(error.message, 'Missing _id property', 'correct error thown')
 
     t.end()
   })

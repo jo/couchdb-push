@@ -135,15 +135,13 @@ module.exports = function push (db, source, options, callback) {
   }
 
   function compileDoc (done) {
-    if (typeof source === 'object') return getDoc(source, [], done)
-
     compile(source, options, function (err, doc, attachments) {
       if (err) {
         return done(err)
       }
 
       if (!doc._id) {
-        return done({ error: 'missing_id', reason: 'Missing _id property' })
+        return done(new Error('Missing _id property'))
       }
 
       attachments = attachments || []
