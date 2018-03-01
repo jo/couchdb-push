@@ -13,7 +13,7 @@ push(db, source[, options], callback)
 ```
 
 * `db` - URL to a CouchDB database. Auth URLs are OK. See [nanos configuration](https://github.com/dscape/nano#configuration), as this argument is directly passed to nano. As of v1.5.0 a nano object is supported, too.
-* `source` -  Can be a  Couchapp Directory Tree, JSON file or CommonJS/Node module. Please see [couchdb-compile](https://github.com/jo/couchdb-compile) for in depth information about source handling.
+* `source` - Can be an object, a Couchapp Directory Tree, JSON file or CommonJS/Node module. Please see [couchdb-compile](https://github.com/jo/couchdb-compile) for in depth information about source handling.
 * `options.index` - When set to `true`, folders are searched for `index.js`, which, if present, is treated as CommonJS module. Default is `false`.
 * `options.multipart` - if set to `true`, attachments are saved via [multipart api](http://docs.couchdb.org/en/latest/api/document/common.html#creating-multiple-attachments).
 * `options.watch` - if set to `true`, watch `source` and push on file changes.
@@ -48,5 +48,6 @@ couchdb-push http://localhost:5984/my-app project/couchdb --watch
 npm test
 ```
 
-(c) 2014 Johannes J. Schmidt, TF  
+(c) 2014-2018 Johannes J. Schmidt, TF  
+
 Apache 2.0 License
