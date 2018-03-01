@@ -21,7 +21,7 @@ var db = couch.use(dbname)
 function rm (db, id, callback) {
   db.get(id, function (error, doc) {
     if (error) return callback(null)
-    db.destroy(id, doc._id, callback)
+    db.destroy(id, doc._rev, callback)
   })
 }
 
@@ -77,7 +77,8 @@ test('doc unchanged', function (t) {
 })
 
 test('user unchanged', function (t) {
-  rm(couch.use('_users'), userdocs[0]._id, function (error) {
+  const user = require(userdocs[0])
+  rm(couch.use('_users'), user._id, function (error) {
     t.error(error, 'no error')
     push(url + '/_users', userdocs[0], function (error, response) {
       t.error(error, 'no error')
