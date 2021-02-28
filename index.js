@@ -1,14 +1,14 @@
 // couchdb-push
 // (c) 2014 Johannes J. Schmidt
 
-var crypto = require('crypto')
-var async = require('async')
-var omit = require('lodash/omit')
-var isEqual = require('lodash/isEqual')
-var nanoOption = require('nano-option')
-var compile = require('couchdb-compile')
-var ensure = require('couchdb-ensure')
-var chokidar = require('chokidar')
+const crypto = require('crypto')
+const async = require('async')
+const omit = require('lodash/omit')
+const isEqual = require('lodash/isEqual')
+const nanoOption = require('nano-option')
+const compile = require('couchdb-compile')
+const ensure = require('couchdb-ensure')
+const chokidar = require('chokidar')
 
 module.exports = function push (db, source, options, callback) {
   if (typeof options === 'function') {
@@ -40,10 +40,10 @@ module.exports = function push (db, source, options, callback) {
       return false
     }
 
-    var md5sum = crypto.createHash('md5')
-    var data = options.multipart ? attachment.data : Buffer.from(attachment.data, 'base64')
+    const md5sum = crypto.createHash('md5')
+    const data = options.multipart ? attachment.data : Buffer.from(attachment.data, 'base64')
     md5sum.update(data)
-    var digest = 'md5-' + md5sum.digest('base64')
+    const digest = 'md5-' + md5sum.digest('base64')
 
     return existingAttachment.digest === digest
   }
@@ -53,9 +53,9 @@ module.exports = function push (db, source, options, callback) {
 
     if (options.multipart) {
       if (attachments.length) {
-        for (var i = 0; i < attachments.length; i++) {
-          var name = attachments[i].name
-          var identical = diffAttachment(attachments[i], existingDoc && existingDoc._attachments && existingDoc._attachments[name])
+        for (let i = 0; i < attachments.length; i++) {
+          const name = attachments[i].name
+          const identical = diffAttachment(attachments[i], existingDoc && existingDoc._attachments && existingDoc._attachments[name])
 
           if (identical) {
             doc._attachments = doc._attachments || {}
@@ -67,7 +67,7 @@ module.exports = function push (db, source, options, callback) {
     } else {
       if (doc._attachments) {
         Object.keys(doc._attachments).forEach(function (name) {
-          var identical = diffAttachment(doc._attachments[name], existingDoc && existingDoc._attachments && existingDoc._attachments[name])
+          const identical = diffAttachment(doc._attachments[name], existingDoc && existingDoc._attachments && existingDoc._attachments[name])
 
           if (identical) {
             doc._attachments[name] = existingDoc._attachments[name]
@@ -103,8 +103,8 @@ module.exports = function push (db, source, options, callback) {
           return callback(error)
         }
 
-        var userDocToCompare = omit(doc, 'password')
-        var existingDocToCompare = omit(existingDoc, 'derived_key', 'iterations', 'password_scheme', 'salt')
+        const userDocToCompare = omit(doc, 'password')
+        const existingDocToCompare = omit(existingDoc, 'derived_key', 'iterations', 'password_scheme', 'salt')
 
         callback(null, !isEqual(userDocToCompare, existingDocToCompare))
       })
@@ -156,9 +156,10 @@ module.exports = function push (db, source, options, callback) {
     }
 
     if (options.watch) {
-      var queue = async.queue(function (task, done) {
+      const queue = async.queue(function (task, done) {
         compileDoc(function (error, response) {
-          error ? console.error(error)
+          error
+            ? console.error(error)
             : console.log(JSON.stringify(response, null, '  '))
           done(error)
         })

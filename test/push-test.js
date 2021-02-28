@@ -1,22 +1,22 @@
-var url = process.env.COUCH || 'http://localhost:5984'
-var dbname = 'couchdb-push-test'
+const url = process.env.COUCH || 'http://localhost:5984'
+const dbname = 'couchdb-push-test'
 
-var async = require('async')
-var nano = require('nano')
-var path = require('path')
-var test = require('tap').test
-var push = require('..')
+const async = require('async')
+const nano = require('nano')
+const path = require('path')
+const test = require('tap').test
+const push = require('..')
 
-var docs = [
+const docs = [
   path.join(__dirname, 'fixtures/doc.json'),
   path.join(__dirname, 'fixtures/otherdoc.json')
 ]
-var userdocs = [
+const userdocs = [
   path.join(__dirname, 'fixtures/user.json'),
   path.join(__dirname, 'fixtures/changed-user.json')
 ]
-var couch = nano(url)
-var db = couch.use(dbname)
+const couch = nano(url)
+const db = couch.use(dbname)
 
 function rm (db, id, callback) {
   db.get(id, function (error, doc) {
@@ -117,7 +117,7 @@ test('user unchanged', function (t) {
 test('user password changed', function (t) {
   push(url + '/_users', userdocs[0], function (error, response) {
     t.error(error, 'no error')
-    var rev = response.rev
+    const rev = response.rev
     push(url + '/_users', userdocs[1], function (error, response) {
       t.error(error, 'no error')
       t.equal(response.ok, true, 'response is ok')
@@ -130,7 +130,7 @@ test('user password changed', function (t) {
 })
 
 test('database containing a slash', function (t) {
-  var name = dbname + '/one'
+  const name = dbname + '/one'
   couch.db.destroy(name, function () {
     push(url + '/' + encodeURIComponent(name), docs[0], function (error, response) {
       t.error(error, 'no error')
