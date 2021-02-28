@@ -1,5 +1,5 @@
 const url = process.env.COUCH || 'http://localhost:5984'
-const dbname = 'couchdb-push-test'
+const dbname = 'couchdb-push-attachments-test'
 
 const nano = require('nano')
 const path = require('path')
