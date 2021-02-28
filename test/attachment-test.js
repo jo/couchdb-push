@@ -1,22 +1,22 @@
-var url = process.env.COUCH || 'http://localhost:5984'
-var dbname = 'couchdb-push-test'
+const url = process.env.COUCH || 'http://localhost:5984'
+const dbname = 'couchdb-push-test'
 
-var nano = require('nano')
-var path = require('path')
-var test = require('tap').test
-var push = require('..')
+const nano = require('nano')
+const path = require('path')
+const test = require('tap').test
+const push = require('..')
 
-var source = path.join(__dirname, 'fixtures/attachment')
-var couch = nano(url)
-var db = couch.use(dbname)
+const source = path.join(__dirname, 'fixtures/attachment')
+const couch = nano(url)
+const db = couch.use(dbname)
 
-var cases = {
+const cases = {
   default: null,
   multipart: { multipart: true }
 }
 
 Object.keys(cases).forEach(function (c) {
-  var options = cases[c]
+  const options = cases[c]
 
   test('simple push ' + c, function (t) {
     couch.db.destroy(dbname, function () {

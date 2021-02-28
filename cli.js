@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var minimist = require('minimist')
-var push = require('./')
+const minimist = require('minimist')
+const push = require('./')
 
-var options = minimist(process.argv.slice(2), {
+const options = minimist(process.argv.slice(2), {
   boolean: ['index', 'multipart', 'watch']
 })
 if (!options._.length) {
@@ -11,8 +11,8 @@ if (!options._.length) {
   process.exit()
 }
 
-var db = options._[0]
-var source = options._[1] || process.cwd()
+const db = options._[0]
+const source = options._[1] || process.cwd()
 
 push(db, source, options, function (error, response) {
   if (error) return console.error(error)
