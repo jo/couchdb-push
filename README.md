@@ -2,9 +2,6 @@
 Deploy CouchDB documents from directory, JSON or CommonJS module.
 Via API or command line client.
 
-[![Build
-Status](https://travis-ci.org/jo/couchdb-push.svg?branch=master)](http://travis-ci.org/jo/couchdb-push)
-
 
 ## API
 

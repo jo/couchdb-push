@@ -6,8 +6,7 @@
   "scripts": {
     "test": "tap --reporter=spec test/*.js",
     "pretest": "standard",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -35,10 +34,12 @@
   },
   "devDependencies": {
     "nano": "^6.4.3",
-    "semantic-release": "^12.4.1",
+    "semantic-release": "^17.4.0",
     "standard": "^11.0.0",
-    "tap": "^11.1.1",
-    "travis-deploy-once": "^4.3.4"
+    "tap": "^11.1.1"
   },
-  "version": "0.0.0-development"
+  "version": "0.0.0-development",
+  "release": {
+    "branches": ["main"]
+  }
 }
