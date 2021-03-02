@@ -3,6 +3,7 @@
   "description": "Deploy CouchDB documents from directory, JSON or module.",
   "main": "index.js",
   "bin": "cli.js",
+  "version": "0.0.0-development",
   "scripts": {
     "test": "tap --reporter=spec test/*.js",
     "pretest": "standard",
