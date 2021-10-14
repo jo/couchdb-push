@@ -4,7 +4,7 @@
   "main": "index.js",
   "bin": "cli.js",
   "scripts": {
-    "test": "tap --reporter=spec test/*.js",
+    "test": "tap --reporter=spec --lines 80 --functions 80 --branches 80 --statements 80 test/*.js",
     "pretest": "standard",
     "semantic-release": "semantic-release"
   },
@@ -24,19 +24,19 @@
   },
   "homepage": "https://github.com/jo/couchdb-push",
   "dependencies": {
-    "async": "^3.2.0",
-    "chokidar": "^3.5.1",
-    "couchdb-compile": "^1.11.0",
-    "couchdb-ensure": "^2.0.0",
+    "async": "^3.2.1",
+    "chokidar": "^3.5.2",
+    "couchdb-compile": "^1.11.1",
+    "couchdb-ensure": "^2.1.0",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
-    "nano-option": "^2.0.1"
+    "nano-option": "^2.2.0"
   },
   "devDependencies": {
-    "nano": "^8.2.3",
-    "semantic-release": "^17.4.0",
-    "standard": "^16.0.3",
-    "tap": "^14.11.0"
+    "nano": "^9.0.5",
+    "semantic-release": "^18.0.0",
+    "standard": "^16.0.4",
+    "tap": "^15.0.10"
   },
   "version": "0.0.0-development",
   "release": {
