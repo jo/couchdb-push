@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "nano": "^9.0.5",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^19.0.3",
     "standard": "^16.0.4",
     "tap": "^15.0.10"
   },
